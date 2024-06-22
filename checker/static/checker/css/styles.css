@@ -1,0 +1,138 @@
+/* styles.css */
+
+/* Общие стили для страницы */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f8f9fa;
+    padding: 20px;
+}
+
+.container {
+    max-width: 800px;
+    margin: 20px auto;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.task {
+    margin-bottom: 20px;
+    padding: 10px;
+    border: 1px solid #ced4da;
+    border-radius: 5px;
+    background-color: #f1f1f1;
+}
+
+.task p {
+    margin: 0;
+    font-size: 1rem;
+}
+
+form {
+    margin-bottom: 20px;
+}
+
+/* Стили для редактора кода */
+.code-editor-container {
+    border: 1px solid #ced4da;
+    border-radius: 5px;
+    background-color: #f8f9fa;
+}
+
+.CodeMirror {
+    height: 300px;
+    font-size: 14px; /* Размер шрифта в редакторе кода */
+}
+
+.CodeMirror-scroll {
+    height: auto;
+    overflow-y: hidden;
+    overflow-x: auto;
+}
+
+button[type="submit"] {
+    display: block;
+    width: 100%;
+    padding: 10px 20px;
+    margin-top: 10px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+button[type="submit"]:hover {
+    background-color: #0056b3;
+}
+
+h2 {
+    margin-top: 20px;
+    font-size: 1.5rem;
+}
+
+pre {
+    background-color: #f1f1f1;
+    padding: 10px;
+    border-radius: 5px;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+}
+
+.CodeMirror-linenumber {
+    color: #999;
+    padding: 0 8px;
+    background-color: #f8f9fa;
+    text-align: right;
+    border-right: 1px solid #ccc;
+}
+
+
+
+.container {
+    width: 160%; /* Увеличиваем ширину контейнера в два раза */
+    max-width: 1200px; /* Максимальная ширина контейнера */
+    background-color: #fff; /* Белый фон контейнера */
+    padding: 40px; /* Увеличиваем отступы в два раза */
+    border-radius: 12px; /* Увеличиваем скругление углов */
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.2); /* Тень */
+}
+
+.container h1 {
+    color: #000000; /* Темно-синий цвет заголовка */
+    text-align: center;
+    margin-bottom: 40px; /* Увеличиваем отступ снизу в два раза */
+}
+.task-card {
+    background-color: #007bff; /* Синий фон */
+    color: #fff; /* Белый цвет текста */
+    padding: 30px 30px 30px 30px; /* Внутренние отступы по часовой стрелке: верх, право, низ, лево */
+    border-radius: 12px; /* Увеличиваем скругление углов */
+    margin-bottom: 20px; /* Увеличиваем расстояние между карточками */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Тень */
+    transition: transform 0.3s ease;
+}
+
+
+.task-card:hover {
+    transform: translateY(-10px); /* Увеличиваем эффект поднятия при наведении */
+}
+.task-card a {
+    text-decoration: none; /* Убираем подчеркивание */
+    color: #fff; /* Белый цвет текста ссылки */
+    font-weight: bold;
+}
+
+ul {
+    list-style-type: none; /* Убираем стандартные маркеры списка */
+    padding: 0;
+    margin: 0; /* Убираем внешние отступы у списка */
+}
+

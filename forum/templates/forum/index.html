@@ -1,0 +1,203 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Форум</title>
+    <link rel="stylesheet" href="{% static 'css/forum.css' %}">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
+    <style>
+        /* Общие стили */
+        body {
+            padding-top: 80px; /* Отступ для размещения контента под хедером */
+            background-color: #f8f9fa; /* Цвет фона */
+        }
+
+        /* Стили для хедера */
+        header {
+            background-color: #ffffff; /* Цвет фона хедера */
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Тень хедера */
+        }
+
+        .navbar-nav {
+            gap: 20px; /* Расстояние между элементами навигации */
+        }
+
+        .navbar-brand {
+            font-size: 1.5rem; /* Размер шрифта для бренда */
+        }
+
+        /* Стили для формы і контейнера з темами */
+        .container {
+            margin-top: 30px; /* Отступ від верхнього краю сторінки */
+        }
+
+        .form-container,
+        .topics-container {
+            background-color: #ffffff; /* Цвет фона форми і контейнера з темами */
+            border-radius: 8px; /* Закруглені кути */
+            padding: 20px; /* Внутрішній відступ */
+            margin-bottom: 20px; /* Відступ знизу */
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Тінь блоків */
+        }
+
+        .form-group {
+            margin-bottom: 20px; /* Відступ між елементами форми */
+        }
+
+        /* Стилі для кнопки */
+        .btn-primary {
+            background-color: #007bff; /* Цвет кнопки */
+            border-color: #007bff; /* Цвет рамки кнопки */
+        }
+
+        .btn-primary:hover {
+            background-color: #0056b3; /* Цвет кнопки при наведении */
+            border-color: #0056b3; /* Цвет рамки кнопки при наведении */
+        }
+
+        /* Стилі для футера */
+        footer {
+            padding-top: 4rem; /* Відступ від верху футера */
+            margin-top: 2rem; /* Відступ від верхнього контейнера */
+            border-top: 1px solid #e9ecef; /* Верхня рамка футера */
+        }
+
+        .footer-col {
+            padding-bottom: 1.5rem; /* Відступ знизу колонок */
+        }
+
+        .footer-link {
+            color: #6c757d; /* Колір посилань футера */
+            text-decoration: none; /* Відсутність підкреслення */
+        }
+
+        .footer-link:hover {
+            color: #007bff; /* Колір посилань футера при наведенні */
+        }
+    </style>
+</head>
+
+<body>
+    <header class="fixed-top">
+        <nav class="navbar navbar-expand-md navbar-light bg-light">
+            <div class="container">
+                <a href="{% url 'profile' %}" class="d-flex align-items-center link-body-emphasis text-decoration-none">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" fill="currentColor"
+                        class="bi bi-filetype-py" viewBox="0 0 16 16">
+                        <path fill-rule="evenodd"
+                            d="M14 4.5V14a2 2 0 0 1-2 2H7v-1h5a1 1 0 0 0 1-1V4.5h-2A1.5 1.5 0 0 1 9.5 3V1H4a1 1 0 0 0-1 1v9H2V2a2 2 0 0 1 2-2h5.5zM0 11.85h1.6q.434 0 .732.179.302.175.46.477t.158.677-.16.677q-.158.299-.464.474a1.45 1.45 0 0 1-.732.173H.79v1.342H0zm2.06 1.714a.8.8 0 0 0 .085-.381q0-.34-.185-.521-.185-.182-.513-.182H.788v1.406h.66a.8.8 0 0 0 .374-.082.57.57 0 0 0 .238-.24m2.963.75v1.535H4.23v-1.52L2.89 11.85h.876l.853 1.696h.032l.856-1.696h.855z" />
+                    </svg>
+                </a>
+                <a class="navbar-brand" href="/">Python World</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+                    <ul class="navbar-nav d-flex align-items-center"> <!-- Добавлен класс d-flex и align-items-center -->
+                        <li class="nav-item">
+                            <a class="me-3 py-2 link-body-emphasis text-decoration-none" href="{% url 'news_list' %}">Новини</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="me-3 py-2 link-body-emphasis text-decoration-none"
+                                href="{% url 'forum' %}">Форум</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="me-3 py-2 link-body-emphasis text-decoration-none" href="{% url 'user_stats' %}">Статистика</a>
+                        </li>
+                        {% if request.user.is_authenticated %}
+                        <li class="nav-item"> <!-- Обернуть ссылку и иконку в элемент списка -->
+                            <a class="me-3 py-2 link-body-emphasis text-decoration-none"
+                                href="{% url 'home' %}">{{ request.user.username }}</a>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor"
+                                class="bi bi-person-circle" viewBox="0 0 17 17">
+                                <path
+                                    d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0" />
+                                <path fill-rule="evenodd"
+                                    d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8m8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1" />
+                            </svg>
+                        </li>
+                        {% endif %}
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <br></br>
+    <br></br>
+    <div class="container">
+        <div class="form-container">
+            <h2>Створити нову тему</h2>
+            {% if user.is_authenticated %}
+            <form method="post">
+                {% csrf_token %}
+                <div class="form-group">
+                    {{ form.title.label_tag }}
+                    {{ form.title }}
+                </div>
+                <div class="form-group">
+                    {{ form.content.label_tag }}
+                    {{ form.content }}
+                </div>
+                <button type="submit" class="btn btn-primary">Відправити</button>
+            </form>
+            {% else %}
+            <p>Будь ласка, <a href="{%url 'login' %}">увійдіть</a> для створення тем.</p>
+                {% endif %}
+        </div>
+
+            <div class="topics-container">
+        <h2>Теми</h2>
+        {% for topic in topics %}
+        <a href="{% url 'topic_detail' topic.id %}" class="topic-link">
+            <div class="topic-block">
+                <h3>{{ topic.title }}</h3>
+                <p><em>Автор: {{ topic.author.username }} | {{ topic.created_at }}</em></p>
+            </div>
+        </a>
+        {% empty %}
+        <p>Тем немає.</p>
+        {% endfor %}
+    </div>
+</div>
+
+ <footer class="pt-4 my-md-5 pt-md-5 border-top">
+    <div class="row">
+        <div class="col-16 col-md offset-2 offset-md-2">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor"
+                class="bi bi-filetype-py" viewBox="0 0 16 16">
+                <path fill-rule="evenodd"
+                    d="M14 4.5V14a2 2 0 0 1-2 2H7v-1h5a1 1 0 0 0 1-1V4.5h-2A1.5 1.5 0 0 1 9.5 3V1H4a1 1 0 0 0-1 1v9H2V2a2 2 0 0 1 2-2h5.5zM0 11.85h1.6q.434 0 .732.179.302.175.46.477t.158.677-.16.677q-.158.299-.464.474a1.45 1.45 0 0 1-.732.173H.79v1.342H0zm2.06 1.714a.8.8 0 0 0 .085-.381q0-.34-.185-.521-.185-.182-.513-.182H.788v1.406h.66a.8.8 0 0 0 .374-.082.57.57 0 0 0 .238-.24m2.963.75v1.535H4.23v-1.52L2.89 11.85h.876l.853 1.696h.032l.856-1.696h.855z" />
+            </svg>
+            <span class="fs-4 b-3 text-body-secondary">&ensp; © Python World</span>
+        </div>
+        <div class="col-6 col-md offset-3 offset-md-0">
+            <h5>Ресурси</h5>
+            <ul class="list-unstyled text-small">
+                <li class="mb-1"><a class="link-secondary text-decoration-none" href="#">Посібники</a></li>
+                <li class="mb-1"><a class="link-secondary text-decoration-none" href="#">Відеокурси</a></li>
+                <li class="mb-1"><a class="link-secondary text-decoration-none" href="#">Вправи</a></li>
+                <li class="mb-1"><a class="link-secondary text-decoration-none" href="#">Проекти</a></li>
+            </ul>
+        </div>
+        <div class="col-6 col-md offset-3 offset-md-0">
+            <h5>Про нас</h5>
+            <ul class="list-unstyled text-small">
+                <li class="mb-1"><a class="link-secondary text-decoration-none" href="#">Команда</a></li>
+                <li class="mb-1"><a class="link-secondary text-decoration-none" href="#">Контакти</a></li>
+                <li class="mb-1"><a class="link-secondary text-decoration-none" href="#">Партнери</a></li>
+                <li class="mb-1"><a class="link-secondary text-decoration-none" href="#">Кар'єра</a></li>
+            </ul>
+        </div>
+    </div>
+</footer>
+
+
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-DGFzSIfHZ5JiS1taPfZ4AtmsF6enVrpIJU4GfnxL5bt0AwfV4IkLRRBAfQvII7IB" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js" integrity="sha384-XtjE9ZKEuBpE1r+4+y77FVt0E7yW8FCXw3F21AOZ8kmNP6ZwET2cv/jcUK6vFrbt" crossorigin="anonymous"></script>
+</body>
+</html>

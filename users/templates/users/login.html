@@ -1,0 +1,101 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Form</title>
+    <link rel="stylesheet" href="{% static 'initialisation/css/styles.css' %}">
+    <style>
+        /* Сброс стилей для удаления отступов и границ по умолчанию */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* Центрирование контейнера и формы */
+        .container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #fff; /* Убрано фоновый цвет */
+        }
+        .login-form {
+            width: 100%;
+            max-width: 400px;
+            padding: 20px;
+            background-color: #fff;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Стили для входной группы */
+        .input-group {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+        .input-group input {
+            flex: 1;
+            padding: 10px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+            box-sizing: border-box;
+        }
+        .input-group .input-group-text {
+            padding: 10px;
+            font-size: 16px;
+            background-color: #e9ecef;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+            margin-left: 10px;
+            white-space: nowrap;
+        }
+
+        /* Стили для кнопки */
+        button[type="submit"] {
+            width: 100%;
+            padding: 10px;
+            font-size: 16px;
+            background-color: #007bff; /* Синий цвет кнопки */
+            color: white;
+            border: none;
+            border-radius: 3px;
+            cursor: pointer;
+        }
+        button[type="submit"]:hover {
+            background-color: #0056b3; /* Темнее синий цвет при наведении */
+        }
+
+        /* Центрирование текста */
+        p {
+            text-align: center;
+            margin-top: 15px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <form class="login-form" method="post">
+            {% csrf_token %}
+            <h2 class="text-center">Увійти</h2>
+            <div class="input-group mb-3">
+                <input type="text" id="username" name="username" class="form-control" placeholder="Ім'я користувача" required>
+                <span class="input-group-text">Ім'я користувача</span>
+            </div>
+            <div class="input-group mb-3">
+                <input type="password" id="password" name="password" class="form-control" placeholder="Пароль" required>
+                <span class="input-group-text">Пароль</span>
+            </div>
+            <button type="submit">Увійти</button>
+            {% if error %}
+                <p>{{ error }}</p>
+            {% endif %}
+            <p>Не маєте облікового запису? <a href="{% url 'register' %}">Зареєструватися</a></p>
+        </form>
+    </div>
+</body>
+</html>

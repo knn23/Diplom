@@ -1,0 +1,54 @@
+/* Ваши собственные стили */
+body {
+   background-color: #f0f0f0; /* Белый фон */
+   font-family: Arial, sans-serif; /* Шрифт */
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   height: 100vh;
+   margin: 0;
+}
+
+.container {
+   width: 80%;
+   max-width: 600px;
+   background-color: #fff; /* Белый фон контейнера */
+   padding: 20px;
+   border-radius: 12px; /* Увеличиваем скругление углов */
+   box-shadow: 0 0 15px rgba(0, 0, 0, 0.2); /* Тень */
+}
+
+h1 {
+   color: #007bff; /* Темно-синий цвет заголовка */
+   text-align: center;
+}
+
+ul {
+   list-style-type: none; /* Убираем маркеры списка */
+   padding: 0;
+}
+
+/* Ваши стили для карточки задачи */
+.task-card {
+   /* Ваши стили здесь */
+}
+
+/* Общие стили для ссылок в карточках задачи */
+.task-card a {
+   /* Общие стили для ссылок */
+   text-decoration: none; /* Убираем подчеркивание */
+   font-weight: bold;
+}
+
+/* Дополнительные стили для ссылок в карточках задачи */
+.task-card a {
+   color: #fff; /* Белый цвет текста ссылки */
+}
+
+.task-card a:hover {
+   color: #000; /* Черный цвет текста ссылки при наведении */
+}
+
+.task-card a:visited {
+   color: #ccc; /* Цвет посещенных ссылок */
+}

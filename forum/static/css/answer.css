@@ -1,0 +1,53 @@
+/* Стилі для списків відповідей */
+.answers-list {
+    background-color: #ffffff;
+    border-radius: 4px;
+    padding: 20px;
+    margin-bottom: 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.answers-list h2 {
+    font-size: 1.8rem;
+    margin-bottom: 15px;
+}
+
+.answers-list .answer {
+    border-bottom: 1px solid #dee2e6;
+    padding-bottom: 10px;
+    margin-bottom: 10px;
+}
+
+.answers-list .answer:last-child {
+    border-bottom: none;
+    margin-bottom: 0;
+}
+
+/* Стилі для форми відповіді */
+.answer-form {
+    background-color: #ffffff;
+    border-radius: 4px;
+    padding: 20px;
+    margin-bottom: 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.answer-form h2 {
+    font-size: 1.8rem;
+    margin-bottom: 15px;
+}
+
+.answer-form form {
+    padding: 15px;
+    border: 1px solid #ced4da;
+    border-radius: 4px;
+    background-color: #f8f9fa;
+}
+
+.answer-form form .form-group {
+    margin-bottom: 15px;
+}
+
+.answer-form form .btn-primary {
+    margin-top: 15px;
+}

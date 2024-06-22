@@ -1,0 +1,120 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Форма реєстрації</title>
+    <link rel="stylesheet" href="{% static 'initialisation/css/styles.css' %}">
+    <style>
+        /* Сброс стилей для удаления отступов и границ по умолчанию */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* Центрирование контейнера и формы */
+        .container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #f8f9fa; /* Светлый фон */
+        }
+        .registration-form {
+            width: 100%;
+            max-width: 400px;
+            padding: 20px;
+            background-color: #fff;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Стили для группы ввода */
+        .input-group {
+            margin-bottom: 15px;
+        }
+        .input-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        .input-group input {
+            width: 100%;
+            padding: 10px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+        }
+
+        /* Стили для кнопки */
+        button[type="submit"] {
+            width: 100%;
+            padding: 10px;
+            font-size: 16px;
+            background-color: #007bff; /* Синий цвет кнопки */
+            color: white;
+            border: none;
+            border-radius: 3px;
+            cursor: pointer;
+        }
+        button[type="submit"]:hover {
+            background-color: #0056b3; /* Темнее синий цвет при наведении */
+        }
+
+        /* Стили для ошибок */
+        .error-message {
+            color: red;
+            margin-bottom: 10px;
+        }
+
+        /* Центрирование текста */
+        p {
+            text-align: center;
+            margin-top: 15px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        {% if error %}
+            <div class="error-message">{{ error }}</div> <!-- Повідомлення про помилку -->
+        {% endif %}
+        <form class="registration-form" method="post">
+            {% csrf_token %}
+            <h2 class="text-center">Зареєструватися</h2>
+            <div class="input-group">
+                <label for="username">Ім'я користувача</label>
+                <input type="text" id="username" name="username" placeholder="Ім'я користувача" required>
+                {% if form.username.errors %}
+                    <div class="error-message">{{ form.username.errors.0 }}</div> <!-- Ошибка имени пользователя -->
+                {% endif %}
+            </div>
+            <div class="input-group">
+                <label for="email">Електронна пошта</label>
+                <input type="email" id="email" name="email" placeholder="Електронна пошта" required>
+                {% if form.email.errors %}
+                    <div class="error-message">{{ form.email.errors.0 }}</div> <!-- Ошибка электронной почты -->
+                {% endif %}
+            </div>
+            <div class="input-group">
+                <label for="password1">Пароль</label>
+                <input type="password" id="password1" name="password1" placeholder="Пароль" required>
+                {% if form.password1.errors %}
+                    <div class="error-message">{{ form.password1.errors.0 }}</div> <!-- Ошибка пароля -->
+                {% endif %}
+            </div>
+            <div class="input-group">
+                <label for="password2">Підтвердження паролю</label>
+                <input type="password" id="password2" name="password2" placeholder="Підтвердження паролю" required>
+                {% if form.password2.errors %}
+                    <div class="error-message">{{ form.password2.errors.0 }}</div> <!-- Ошибка подтверждения пароля -->
+                {% endif %}
+            </div>
+            <button type="submit">Зареєструватися</button>
+            <p>Вже маєте обліковий запис? <a href="{% url 'login' %}">Увійти</a></p>
+        </form>
+    </div>
+</body>
+</html>
